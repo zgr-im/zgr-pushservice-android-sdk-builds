@@ -1,11 +1,15 @@
 package im.zgr.pushservice.sample
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import im.zgr.pushservice.NotificationImportance
 import im.zgr.pushservice.NotificationSdk
 import im.zgr.pushservice.domain.dto.NotificationDto
@@ -54,6 +58,13 @@ class MainActivity : AppCompatActivity() {
         logoutButton.setOnClickListener { logout() }
         loadProfileButton.setOnClickListener { loadUserProfile() }
         this.checkWebView(intent)
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent) {
+                val messageId = intent.getStringExtra("messageId")
+                messageId.isNullOrBlank()
+            }}, IntentFilter ("im.zgr.pushservice.message"))
+
     }
 
     override fun onNewIntent(intent: Intent?) {
