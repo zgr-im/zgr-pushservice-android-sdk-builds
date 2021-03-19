@@ -118,6 +118,12 @@ NotificationSdk.getInstance(context)
 
 `deleteAllNotificationsFromHistory` - метод используется для удаления всех push-уведомлений из локальной БД.
 
+Для получения уведомлений о получении push сообщений можно создать BroadcastReceiver следующим образом:
+LocalBroadcastManager.getInstance(this).registerReceiver(object : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent) {
+        val messageId = intent.getStringExtra("messageId")
+    }}, IntentFilter ("im.zgr.pushservice.message"))
+
 ## Настраиваемые параметры sdk
 Для настройки параметров sdk необходимо вызывать методы `NotificationSdk.getInstance(context).set…`
 

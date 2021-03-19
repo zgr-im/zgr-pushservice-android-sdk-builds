@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this).registerReceiver(object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent) {
                 val messageId = intent.getStringExtra("messageId")
-                messageId.isNullOrBlank()
             }}, IntentFilter ("im.zgr.pushservice.message"))
 
     }
