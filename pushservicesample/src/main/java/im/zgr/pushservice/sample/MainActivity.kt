@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
                 val messageId = intent.getStringExtra("messageId")
             }}, IntentFilter ("im.zgr.pushservice.message"))
 
+
     }
 
     override fun onNewIntent(intent: Intent?) {
