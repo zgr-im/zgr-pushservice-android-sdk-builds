@@ -15,7 +15,10 @@
 Подробно процесс описан здесь: https://developer.huawei.com/consumer/en/codelab/HMSPushKit/
 
 ## Добавление библиотеки PushService
-- скопировать pushservice.aar в директорию /<APP_NAME>/libs/
+- Добавить репозиторий в gradle файл проекта:
+  maven { url "https://zagruzka.jfrog.io/artifactory/general" }
+- Добавить зависимость в gradle файл модуля приложения:
+  implementation "com.zagruzka:pushservice:X.X", где X.X - номер версии
 - добавить файл ZGRConfig.json в директорию assets проекта. В этом файле должны содержаться корректные идентификаторы проекта
 - Задать иконку уведомления для отображения в статус баре методом `NotificationSdk.getInstance(context).setNotificationIconResId(R.drawable.ic_notification_icon)`. Требования к формату иконки описаны тут: http://marpol.i234.me/android_sdk_doc//guide/practices/ui_guidelines/icon_design_status_bar.html 
 
