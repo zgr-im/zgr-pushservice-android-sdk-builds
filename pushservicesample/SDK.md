@@ -20,7 +20,7 @@
 - Добавить зависимость в gradle файл модуля приложения:
   implementation "com.zagruzka:pushservice:X.X", где X.X - номер версии
 - добавить файл ZGRConfig.json в директорию assets проекта. В этом файле должны содержаться корректные идентификаторы проекта
-- Задать иконку уведомления для отображения в статус баре методом `NotificationSdk.getInstance(context).setNotificationIconResId(R.drawable.ic_notification_icon)`. Требования к формату иконки описаны тут: http://marpol.i234.me/android_sdk_doc//guide/practices/ui_guidelines/icon_design_status_bar.html 
+- Задать иконку уведомления для отображения в статус баре методом `NotificationSdk.getInstance(context).setNotificationIconResId(R.drawable.ic_notification_icon)`.
 
 ## Регистрация токена устройства (Firebase InstanceId)
 При старте приложения требуется сохранить текущий push-токен и текущее состояние настройки оповещений в ОС, для этого надо вызвать:
