@@ -15,10 +15,17 @@
 Подробно процесс описан здесь: https://developer.huawei.com/consumer/en/codelab/HMSPushKit/
 
 ## Добавление библиотеки PushService
+- Добавить варианты сборки приложения под платформы:
+  flavorDimensions "services"
+  productFlavors {
+    google { dimension "services" }
+    huawei { dimension "services" }
+  }  
 - Добавить репозиторий в gradle файл проекта:
-  maven { url "https://zagruzka.jfrog.io/artifactory/general" }
-- Добавить зависимость в gradle файл модуля приложения:
-  implementation "com.zagruzka:pushservice:X.X", где X.X - номер версии
+  maven { url "https://codebase.jfrog.io/artifactory/general" }
+- Добавить зависимость в gradle файл модуля приложения в зависимости от платформы:
+  googleImplementation("com.zagruzka:pushservice-google:+")
+  huaweiImplementation("com.zagruzka:pushservice-huawei:+")
 - добавить файл ZGRConfig.json в директорию assets проекта. В этом файле должны содержаться корректные идентификаторы проекта
 - Задать иконку уведомления для отображения в статус баре методом `NotificationSdk.getInstance(context).setNotificationIconResId(R.drawable.ic_notification_icon)`.
 
