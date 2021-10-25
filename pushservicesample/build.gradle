@@ -35,13 +35,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    flavorDimensions "services"
+    productFlavors {
+        google { dimension "services" }
+        huawei { dimension "services" }
+    }
+
 }
 
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.aar'])
 
-    implementation "com.zagruzka:pushservice:1.0"
+    googleImplementation("com.zagruzka:pushservice-google:+")
+    huaweiImplementation("com.zagruzka:pushservice-huawei:+")
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.2.1'
@@ -70,7 +78,6 @@ dependencies {
     // rxJava
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-
 
 }
 
