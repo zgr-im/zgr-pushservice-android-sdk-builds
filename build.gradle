@@ -24,7 +24,7 @@ allprojects {
         google()
         jcenter()
         maven {url 'http://developer.huawei.com/repo/' }
-        maven { url "https://codebase.jfrog.io/artifactory/general" }
+        maven { url "https://codespace.jfrog.io/artifactory/general" }
     }
 }
 
