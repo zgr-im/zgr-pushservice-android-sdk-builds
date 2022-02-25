@@ -48,8 +48,8 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.aar'])
 
-    googleImplementation("com.zagruzka:pushservice-google:1.1.3")
-    huaweiImplementation("com.zagruzka:pushservice-huawei:1.1.3")
+    googleImplementation("com.zagruzka:pushservice-google:1.1.4")
+    huaweiImplementation("com.zagruzka:pushservice-huawei:1.1.4")
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.2.1'
