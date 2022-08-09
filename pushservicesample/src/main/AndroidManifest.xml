@@ -5,43 +5,41 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".NotificationHistoryActivity"></activity>
+
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:exported="true"
+            android:name=".AppActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
-            android:name=".WebViewActivity"
+            android:name=".ViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_web_view"
             android:launchMode="singleTop"
             android:theme="@style/FullscreenTheme" />
 
         <service
-            android:name=".MyService"
+            android:name=".AppService"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="100">
-                <action android:name="link" />
-                <action android:name="open-app" />
-                <action android:name="clear" />
+                <action android:name="im.zgr.pushservice.sample-link" />
+                <action android:name="im.zgr.pushservice.sample-open-app" />
+                <action android:name="im.zgr.pushservice.sample-clear" />
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

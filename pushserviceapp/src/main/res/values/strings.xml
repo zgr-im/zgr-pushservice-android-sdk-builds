@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="title_activity_web_view">Просмотр контента</string>
+    <string name="title_notifications">История оповещений</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="title_activity_connection">Cоединение</string>
+    <string name="title_activity_connection_dialog_title">Применение настроек</string>
+    <string name="title_activity_connection_dialog_message">Для применения настроек соединения перезапустите приложение</string>
+    <string name="title_activity_history">История оповещений</string>
+
+    <string name="applicationId">applicationId</string>
+    <string name="endpointURL">endpointURL</string>
+    <string name="apiKey">apiKey</string>
+
+</resources>

@@ -1,0 +1,85 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 32
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 32
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField "String", "SDK_VERSION_NAME", "\"${project.libVerName}\""
+            buildConfigField "int", "SDK_VERSION_CODE", "${project.libVerCode}"
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SDK_VERSION_NAME", "\"${project.libVerName}\""
+            buildConfigField "int", "SDK_VERSION_CODE", "${project.libVerCode}"
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    flavorDimensions "services"
+    productFlavors {
+        google { dimension "services" }
+        huawei { dimension "services" }
+    }
+
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.aar']) // Uncomment to use sdk as generated arr in libs folder
+    googleImplementation("com.zagruzka:pushservice-google:$project.libVerName")
+    huaweiImplementation("com.zagruzka:pushservice-huawei:$project.libVerName")
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation "androidx.fragment:fragment:1.2.5"
+    implementation 'androidx.preference:preference:1.1.1'
+
+    testImplementation 'junit:junit:4.13'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // rxJava
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+
+    // huawei services
+    huaweiImplementation 'com.huawei.hms:push:6.3.0.302'
+    huaweiImplementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'
+
+    // google services
+    googleImplementation 'com.google.firebase:firebase-core:18.0.1'
+    googleImplementation 'com.google.firebase:firebase-messaging:21.0.1'
+
+}

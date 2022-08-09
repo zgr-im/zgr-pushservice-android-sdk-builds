@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="im.zgr.pushservice.app">
+
+    <application>
+
+        <activity
+            android:name=".NotificationHistoryActivity"
+            android:label="@string/title_activity_history"/>
+
+        <activity
+            android:name=".ConnectionActivity"
+            android:label="@string/title_activity_connection" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+
+    </application>
+
+</manifest>
