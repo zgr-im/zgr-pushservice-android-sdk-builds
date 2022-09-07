@@ -155,7 +155,7 @@ NotificationSdk.getInstance(context)
 `NotificationSdk.getInstance(this).subscribeOnMessage` - для подписки/отписки получения Push сообщений в любом формате
 Пример использования можно посмотреть в файле MainActivity.kt в составе SDK.
 
-## Обработка действий пользователя с push - сообщением (кликнуть / удалить сообщение)
+## Обработка действий с push сообщением (кликнуть / удалить)
 Необходимо использовать метод:
 `NotificationSdk.getInstance(this).subscribeOnMessageAction` - для подписки/отписки на действия
 Пример использования можно посмотреть в файле MainActivity.kt в составе SDK.
