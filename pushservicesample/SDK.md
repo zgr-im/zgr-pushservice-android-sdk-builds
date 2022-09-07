@@ -149,19 +149,32 @@ NotificationSdk.getInstance(context)
 
 **Внимание!** Все методы SDK (включая регистрацию токена/телефона) необходимо вызывать из основного потока MainThread (https://developer.android.com/guide/components/processes-and-threads?hl=ru#Threads)
 
+## Обработка получения push сообщений
+Необходимо использовать методы: 
+`NotificationSdk.getInstance(this).subscribeOnAppMessage` - для подписки/отписки получения PUSH сообщений в формате SDK
+`NotificationSdk.getInstance(this).subscribeOnMessage` - для подписки/отписки получения Push сообщений в любом формате
+Пример использования можно посмотреть в файле MainActivity.kt в составе SDK.
+
+## Обработка действий пользователя с push - сообщением (кликнуть / удалить сообщение)
+Необходимо использовать метод:
+`NotificationSdk.getInstance(this).subscribeOnMessageAction` - для подписки/отписки на действия
+Пример использования можно посмотреть в файле MainActivity.kt в составе SDK.
+
 ## Обработка нажатий на кнопки из push-уведомлений
-Для того, чтобы иметь возможность обрабатывать нажатие кнопок из Push-уведомлений, необходимо создать сервис, в качестве intent-фильтра указать список названий action, которые необходимо обработать, пример из AndroidManifest.xml:
+Для того, чтобы иметь возможность обрабатывать нажатие кнопок из Push-уведомлений, необходимо реализовать сервис и обьявить его в манифесте.
+Пример использования можно посмотреть в файлах AppService.kt / MainService.kt в составе SDK.
 ```
 <service
-        android:name=".MyService"
-        android:enabled="true"
-        android:exported="true">
-    <intent-filter>
-        <action android:name="link"/>
-        <action android:name="open-app"/>
-        <action android:name="clear"/>
+    android:name=".AppService"
+    android:enabled="true"
+    android:exported="true">
+    <intent-filter android:priority="100">
+        <action android:name="im.zgr.pushservice.sample-link" />
+        <action android:name="im.zgr.pushservice.sample-open-app" />
+        <action android:name="im.zgr.pushservice.sample-clear" />
     </intent-filter>
 </service>
+        
 ```
 Т.о. MyService будет получать события нажатия на кнопки с action равным "link", "open-app", "clear". 
 В onStartCommand, в атрибуте Intent: intent.action будет название действия, intent так же будет содержать Parcelable-extra-параметры:
@@ -169,7 +182,4 @@ NotificationSdk.getInstance(context)
 * currentNotification: im.zgr.pushservice.domain.dto.NotificationDto - объект содержит в себе информацию о текущем оповещении
 * currentAction: im.zgr.pushservice.domain.dto.ActionDto - объект содержит в себе информацию о текущем действии над оповещением
 
-## Обработка нажатия на Push-уведомление
-При нажатии на Push-уведомление происходит открытие основного activity приложения, в intent передаются extra-параметры:
 
-* currentNotification: im.zgr.pushservice.domain.dto.NotificationDto - объект содержит в себе информацию о текущем оповещении
