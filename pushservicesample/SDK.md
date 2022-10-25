@@ -128,6 +128,8 @@ NotificationSdk.getInstance(context)
 
 `deleteAllNotificationsFromHistory` - метод используется для удаления всех push-уведомлений из локальной БД.
 
+'updateNotificationFromHistory' - метод обновления push-уведомлений в локальной БД.
+
 Для получения уведомлений о получении push сообщений можно создать BroadcastReceiver следующим образом:
 
     LocalBroadcastManager.getInstance(this).registerReceiver(object : BroadcastReceiver() {
