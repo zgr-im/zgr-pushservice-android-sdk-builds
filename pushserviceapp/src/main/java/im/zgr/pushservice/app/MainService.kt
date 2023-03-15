@@ -8,23 +8,26 @@ import android.os.IBinder
 import im.zgr.pushservice.domain.dto.NotificationCustomActionDto
 import im.zgr.pushservice.domain.dto.NotificationDto
 import im.zgr.pushservice.utils.IntentHelper
-
+import java.util.*
 
 abstract class MainService : Service() {
-
-    abstract fun createNotificationIntent(): Intent
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent != null) {
             val currentNotification: NotificationDto? = IntentHelper.getNotificationFromIntent(intent)
             val currentCustomAction: NotificationCustomActionDto? = IntentHelper.getCustomActionFromIntent(intent)
             when (intent.action?.replace(String.format("%s-", packageName), "")) {
-                 "link" -> {
-                    val notificationIntent = createNotificationIntent()
-                    notificationIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    notificationIntent.putExtra("content_url", currentCustomAction?.options)
-                    startActivities(arrayOf(notificationIntent))
-                    sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
+
+                "link" -> {
+                    val category = currentNotification?.contentCategory?.toLowerCase(Locale.getDefault())
+                    if(currentNotification?.contentUrl != null) {
+                        val title = currentNotification.title
+                        val text = currentNotification.text
+                        val app = applicationContext as AppBasic
+                        val url = currentCustomAction?.options
+                        app.startView(title, text, category, url)
+                        sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
+                    }
                 }
                 "open-app" -> {
                     startActivity(packageManager.getLaunchIntentForPackage(applicationContext.packageName))

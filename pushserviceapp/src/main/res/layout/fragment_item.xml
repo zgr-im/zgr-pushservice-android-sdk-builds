@@ -16,10 +16,11 @@
             android:id="@+id/image"
             android:scaleType="centerCrop"
             android:layout_margin="8dp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"  />
+            android:layout_width="48dp"
+            android:layout_height="48dp"  />
 
         <Button
+            android:visibility="gone"
             android:id="@+id/delete_button"
             android:layout_width="56dp"
             android:layout_height="wrap_content"
@@ -34,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@id/rightLayout"
-        android:textAppearance="?attr/textAppearanceListItem"
-        />
+        android:textAppearance="?attr/textAppearanceListItem" />
 
 </RelativeLayout>

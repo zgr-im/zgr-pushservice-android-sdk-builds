@@ -1,19 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/activity_margin"
+    android:background="@color/colorGray"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="@dimen/activity_horizontal_margin">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <RelativeLayout
+        android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/line_token"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_margin"
+            android:background="@color/colorWhite"
+            android:layout_margin="@dimen/activity_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView_current_push_token"
@@ -21,9 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="PushToken:"
-                android:textAlignment="center"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                android:textAlignment="center" />
 
             <EditText
                 android:id="@+id/current_push_token"
@@ -31,40 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:enabled="false"
-                android:text="Push Token"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
-
-            <FrameLayout
-                android:id="@+id/saveProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
-
-            <FrameLayout
-                android:id="@+id/loadProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
+                android:text="Push Token" />
 
             <Button
                 android:id="@+id/btnShowTestNotification"
@@ -75,69 +46,46 @@
                 android:visibility="gone"
                 tools:visibility="visible" />
 
-            <Button
-                android:id="@+id/connection_button"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_custom_payload"
+            android:background="@color/colorGray"
+            android:layout_margin="@dimen/activity_margin"
+            android:layout_below="@id/line_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textView_custom_payload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Соединение"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:text="CustomPayload открытого уведомления:"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <EditText
+                android:id="@+id/custom_payload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:enabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/settings_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Настройки"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/notification_history_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="История оповещений"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/line_custom_payload"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider" />
-
-                <TextView
-                    android:id="@+id/textView_custom_payload"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textAlignment="center"
-                    android:text="CustomPayload открытого уведомления:"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
-
-                <EditText
-                    android:id="@+id/custom_payload"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:enabled="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+    </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <fragment
+        android:id="@+id/history"
+        android:name="im.zgr.pushservice.app.HistoryListFragment"
+        android:layout_below="@id/top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

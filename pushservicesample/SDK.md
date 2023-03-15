@@ -22,7 +22,7 @@
     huawei { dimension "services" }
   }  
 - Добавить репозиторий в gradle файл проекта:
-  maven { url "https://codebase.jfrog.io/artifactory/general" }
+  maven { url "https://codespace.jfrog.io/artifactory/general/" }
 - Добавить зависимость в gradle файл модуля приложения в зависимости от платформы:
   googleImplementation("com.zagruzka:pushservice-google:+")
   huaweiImplementation("com.zagruzka:pushservice-huawei:+")

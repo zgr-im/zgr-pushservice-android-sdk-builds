@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 32
+        targetSdkVersion 33
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -40,11 +40,17 @@ android {
         huawei { dimension "services" }
     }
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
 }
 
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.aar']) // Uncomment to use sdk as generated arr in libs folder
+
+//    implementation project(path: ':pushservice')
     googleImplementation("com.zagruzka:pushservice-google:$project.libVerName")
     huaweiImplementation("com.zagruzka:pushservice-huawei:$project.libVerName")
 
@@ -79,7 +85,12 @@ dependencies {
     huaweiImplementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'
 
     // google services
-    googleImplementation 'com.google.firebase:firebase-core:18.0.1'
-    googleImplementation 'com.google.firebase:firebase-messaging:21.0.1'
+    googleImplementation platform('com.google.firebase:firebase-bom:31.1.0')
+    googleImplementation 'com.google.firebase:firebase-firestore'
+    googleImplementation 'com.google.firebase:firebase-messaging'
+    googleImplementation 'com.google.firebase:firebase-analytics'
+    googleImplementation 'com.google.firebase:firebase-auth'
+
+    api files("libs\\YouTubeAndroidPlayerApi.jar")
 
 }

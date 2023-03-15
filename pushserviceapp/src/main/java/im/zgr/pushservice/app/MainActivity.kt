@@ -3,46 +3,36 @@ package im.zgr.pushservice.app
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
+import im.zgr.pushservice.NotificationActivity
 import im.zgr.pushservice.NotificationImportance
 import im.zgr.pushservice.NotificationSdk
 import im.zgr.pushservice.domain.dto.NotificationDto
 import im.zgr.pushservice.utils.IntentHelper
 import java.util.*
 
-abstract class MainActivity : AppCompatActivity() {
+abstract class MainActivity: NotificationActivity() {
 
-    val connectionButton: Button by lazy { findViewById<Button>(R.id.connection_button) }
-    val settingsButton: Button by lazy { findViewById<Button>(R.id.settings_button) }
+    protected val lineToken: LinearLayout by lazy { findViewById(R.id.line_token) }
+    protected val lineCustomPayload: LinearLayout by lazy { findViewById(R.id.line_custom_payload) }
 
-    private val btnShowTestNotification: TextView by lazy { findViewById<TextView>(R.id.btnShowTestNotification) }
-    private val lineCustomPayload: LinearLayout by lazy { findViewById<LinearLayout>(R.id.line_custom_payload) }
-    private val notificationHistoryButton: Button by lazy { findViewById<Button>(R.id.notification_history_button) }
-    private val tokenTextView: TextView by lazy { findViewById<TextView>(R.id.current_push_token) }
-    private val customPayloadTextView: TextView by lazy { findViewById<TextView>(R.id.custom_payload) }
+    private val btnShowTestNotification: TextView by lazy { findViewById(R.id.btnShowTestNotification) }
+    private val tokenTextView: TextView by lazy { findViewById(R.id.current_push_token) }
+    private val customPayloadTextView: TextView by lazy { findViewById(R.id.custom_payload) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.loadProfile, UserLoadFragment()).commit()
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.saveProfile, UserSaveFragment()).commit()
-
         setContentView(R.layout.activity_main)
-        setVersion()
         registerToken()
-
-        connectionButton.setOnClickListener { openConnectionActivity() }
-        settingsButton.setOnClickListener { openSettingsActivity() }
-        notificationHistoryButton.setOnClickListener { openNotificationHistoryActivity() }
         btnShowTestNotification.visibility = View.GONE
         btnShowTestNotification.setOnClickListener { showTestNotification() }
-
         checkWebView(intent)
 
     }
@@ -73,20 +63,8 @@ abstract class MainActivity : AppCompatActivity() {
     private fun say(text: String) =
         Toast.makeText(this, text, Toast.LENGTH_LONG).show()
 
-    abstract val appVersionName: String
-    abstract fun createViewIntent(): Intent
-
-    private fun setVersion() {
-        title = (getAppName() + " (sdk=%s app=%s)").format(
-            BuildConfig.SDK_VERSION_NAME,
-            appVersionName
-        )
-    }
-
-    abstract fun getAppName(): String
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
+    override fun onNewIntentExtra(intent: Intent?) {
+        super.onNewIntentExtra(intent)
         if (intent != null) {
             lineCustomPayload.visibility = View.GONE
             this.checkWebView(intent)
@@ -96,20 +74,22 @@ abstract class MainActivity : AppCompatActivity() {
     private fun checkWebView(intent: Intent) {
         val currentNotification: NotificationDto? = IntentHelper.getNotificationFromIntent(intent)
         if (currentNotification != null) {
+
             if (currentNotification.customPayload != null) {
                 customPayloadTextView.text = currentNotification.customPayload
                 lineCustomPayload.visibility = View.VISIBLE
             }
 
-            val category = currentNotification.contentCategory?.toLowerCase(Locale.getDefault())
-            val show = category == "html" || category == "image"
-            if (show && currentNotification.contentUrl != null) {
-                val notificationIntent = createViewIntent()
-                notificationIntent.putExtra("content_url", currentNotification.contentUrl.toString())
-                startActivity(notificationIntent)
+            if (currentNotification.contentUrl != null) {
+                val title = currentNotification.title
+                val text = currentNotification.text
+                val category = currentNotification.contentCategory?.toLowerCase(Locale.getDefault())
+                val app = applicationContext as AppBasic
+                val url = currentNotification.contentUrl.toString()
+                app.startView(title, text, category, url)
             }
-        }
 
+        }
     }
 
     // Uncomment only when pushservice module dependency is used
@@ -125,18 +105,7 @@ abstract class MainActivity : AppCompatActivity() {
 //        notificationShower.showNotification(notificationDto, this)
     }
 
-    private fun openConnectionActivity() {
-        startActivity(Intent(this, ConnectionActivity::class.java))
-    }
-
-    private fun openSettingsActivity() {
-        startActivity(Intent(this, SettingsActivity::class.java))
-    }
-
-    private fun openNotificationHistoryActivity() {
-        startActivity(Intent(this, NotificationHistoryActivity::class.java))
-
-    }
+    abstract fun openSettingsActivity()
 
     @SuppressLint("SetTextI18n")
     private fun registerToken() {
@@ -152,6 +121,20 @@ abstract class MainActivity : AppCompatActivity() {
                 tokenTextView.text = "Ошибка при регистрации токена $it"
             })
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu);
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings -> {
+                openSettingsActivity()
+                true
+            } else -> true
+        }
     }
 
 }

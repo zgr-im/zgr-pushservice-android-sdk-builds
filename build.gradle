@@ -8,8 +8,8 @@ buildscript {
         maven {url 'http://developer.huawei.com/repo/' }
     }
 
-    project.ext.set("libVerName", "1.1.9.3")
-    project.ext.set("libVerCode", 1193)
+    project.ext.set("libVerName", "1.1.9.9")
+    project.ext.set("libVerCode", 1199)
 
     dependencies {
 

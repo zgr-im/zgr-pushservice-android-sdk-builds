@@ -8,12 +8,12 @@ android {
         abortOnError false
     }
 
-    compileSdkVersion 32
+    compileSdkVersion 33
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 32
-        versionName "1.0.33"
-        versionCode 33
+        targetSdkVersion 33
+        versionName "1.0.43"
+        versionCode 43
         applicationId "im.zgr.pushservice.sample"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         resConfigs("ru")
@@ -59,12 +59,23 @@ android {
         huawei { dimension "services" }
     }
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+    
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.aar']) // Uncomment to use sdk as generated arr in libs folder
+
+//    implementation project(path: ':pushservice')
+    googleImplementation("com.zagruzka:pushservice-google:$project.libVerName")
+    huaweiImplementation("com.zagruzka:pushservice-huawei:$project.libVerName")
+
     implementation project(path: ':pushserviceapp')
     implementation 'com.google.android.material:material:1.2.1'
+
 }
 
 repositories {

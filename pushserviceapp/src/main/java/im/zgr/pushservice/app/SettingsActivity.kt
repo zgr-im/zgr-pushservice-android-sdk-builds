@@ -1,111 +1,52 @@
 package im.zgr.pushservice.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.*
-import im.zgr.pushservice.NotificationSdk
-import im.zgr.pushservice.domain.dto.InstallationInfoDto
-import im.zgr.pushservice.domain.dto.InstallationInfoSettingDto
 
-class SettingsActivity : AppCompatActivity() {
+open class SettingsActivity : AppCompatActivity() {
 
-    private val saveButton: Button by lazy { findViewById(R.id.save_button) }
-    private lateinit var settingsFragment: SettingsFragment
+    private var settingsFragment = SettingsTogglesFragment()
+
+    val saveButton: Button by lazy { findViewById(R.id.save_button) }
+    val connectionButton: Button by lazy { findViewById(R.id.connection_button) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        settingsFragment = SettingsFragment()
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.settings, settingsFragment)
-            .commit()
+
+        val app = application as AppBasic
+        val sdkVersion = findViewById<TextView>(R.id.sdkVersion)
+        sdkVersion.text = String.format("SDK version %s", app.sdkVersion)
+        val appVersion = findViewById<TextView>(R.id.appVersion)
+        appVersion.text = String.format("APP version %s", app.appVersion)
+
+        connectionButton.setOnClickListener { openConnectionActivity() }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.profile, UserFragment()).commit()
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.settings, settingsFragment).commit()
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         saveButton.setOnClickListener {
             settingsFragment.saveSettings()
         }
-    }
 
-    class SettingsFragment : PreferenceFragmentCompat() {
-        private lateinit var installationInfoDto: InstallationInfoDto
-
-        private fun say(s: String) =
-            Toast.makeText(requireContext(), s,
-                Toast.LENGTH_SHORT).show()
-
-        fun saveSettings() {
-            NotificationSdk.getInstance(requireContext()).updateInstallationInfo(
-                installationInfoDto.pushEnabled,
-                installationInfoDto.settings,
-                installationInfoDto.primary,
-                { say("Сохранение настроек: успешно!") },
-                { say("Сохранение настроек: ошибка - ${it.localizedMessage}") })
-        }
-
-        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-
-            NotificationSdk.getInstance(requireContext()).getInstallationInfo({
-                setPreferencesFromResource(R.xml.empty_preference_screen, rootKey)
-                // create preferences manually
-                val preferenceScreen: PreferenceScreen = this.preferenceScreen
-                val preferenceCategoryCommon = PreferenceCategory(preferenceScreen.context)
-                preferenceCategoryCommon.setTitle("Общие")
-                preferenceScreen.addPreference(preferenceCategoryCommon)
-                val preferenceCategorySettings = PreferenceCategory(preferenceScreen.context)
-                preferenceCategorySettings.setTitle("Подписки")
-                preferenceScreen.addPreference(preferenceCategorySettings)
-                //*******************************
-                Toast.makeText(context!!, "Загрузка настроек: успешно!", Toast.LENGTH_SHORT).show()
-                installationInfoDto = it
-                val preferenceNotifications = SwitchPreference(preferenceScreen.context)
-                preferenceNotifications.title = "Разрешить уведомления"
-                preferenceNotifications.setDefaultValue(installationInfoDto.pushEnabled)
-                preferenceNotifications.onPreferenceChangeListener =
-                    Preference.OnPreferenceChangeListener { preference, newValue ->
-                        installationInfoDto.pushEnabled = newValue as Boolean
-                        true
-                    }
-                preferenceCategoryCommon.addPreference(preferenceNotifications)
-                val preferencePrimaryDevice = SwitchPreference(preferenceScreen.context)
-                preferencePrimaryDevice.title = "Основное устройство"
-                preferencePrimaryDevice.setDefaultValue(installationInfoDto.primary)
-                preferencePrimaryDevice.onPreferenceChangeListener =
-                    Preference.OnPreferenceChangeListener { preference, newValue ->
-                        installationInfoDto.primary = newValue as Boolean
-                        true
-                    }
-                preferenceCategoryCommon.addPreference(preferencePrimaryDevice)
-                installationInfoDto.settings?.forEach {
-                    var preference: Preference? = null
-                    if (it.type == InstallationInfoSettingDto.SettingType.PERMISSION) {
-                        it.value = it.value.toBoolean().toString()
-                        preference = SwitchPreference(preferenceScreen.context)
-                        preference.setDefaultValue(it.value.toBoolean())
-                    }
-                    if (it.type == InstallationInfoSettingDto.SettingType.SETTING) {
-                        preference = Preference(preferenceScreen.context)
-                        preference.setDefaultValue(it.value)
-                    }
-                    if (preference != null) {
-                        preference.title = it.title
-                        preference.onPreferenceChangeListener =
-                            Preference.OnPreferenceChangeListener { preference, newValue ->
-                                it.value = newValue.toString()
-                                true
-                            }
-                        preferenceCategorySettings.addPreference(preference)
-                    }
-                }
-
-            }, { say("Загрузка настроек: ошибка - ${it.localizedMessage}") })
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) finish(); // to close the activity
         return super.onOptionsItemSelected(item)
     }
+
+    private fun openConnectionActivity() {
+        startActivity(Intent(this, ConnectionActivity::class.java))
+    }
+
 }

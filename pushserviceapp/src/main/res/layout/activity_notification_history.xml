@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotificationHistoryActivity"
-    android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-    >
+    tools:context=".HistoryListFragment" >
 
     <LinearLayout
         android:id="@+id/first_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        android:background="@color/colorWhite"
+        android:layout_margin="@dimen/activity_margin" >
 
         <EditText
             android:id="@+id/date_from"
-            android:layout_width="0dp"
+            android:layout_margin="@dimen/activity_margin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="false"
@@ -28,9 +28,9 @@
 
         <EditText
             android:id="@+id/date_to"
-            android:layout_width="0dp"
+            android:layout_margin="@dimen/activity_margin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/date_from"
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="false"
@@ -39,51 +39,55 @@
             android:inputType="date" />
 
         <Button
-            android:id="@+id/reset_button"
+            android:id="@+id/refresh_button"
+            android:layout_margin="@dimen/activity_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@+id/date_to"
-            android:layout_marginLeft="10dp"
-            android:text="Сбросить" />
+            android:text="Обновить" />
+
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/second_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/first_line">
+        android:background="@color/colorWhite"
+        android:layout_margin="@dimen/activity_margin" >
 
         <Button
             android:id="@+id/delete_all_button"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/activity_margin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/date_from"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:text="Удалить всё"
             android:textColor="@color/design_default_color_error"/>
 
         <Button
-            android:id="@+id/refresh_button"
-            android:layout_width="wrap_content"
+            android:id="@+id/reset_button"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/activity_margin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/date_from"
-            app:layout_constraintLeft_toRightOf="@+id/delete_all_button"
-            android:text="Обновить" />
+            android:text="Сбросить" />
+
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"
-        android:name="im.zgr.pushservice.app.NotificationHistoryItemFragment"
-        android:layout_width="0dp"
+        android:name="im.zgr.pushservice.app.HistoryItemFragment"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/next_page_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/second_line" />
+        android:background="@color/colorWhite"
+        android:layout_margin="@dimen/activity_margin" />
 
     <Button
+        android:background="@color/colorWhite"
+        android:layout_margin="@dimen/activity_margin"
         android:id="@+id/next_page_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Загрузить ещё..."
         tools:layout_editor_absoluteX="223dp"
@@ -92,4 +96,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
