@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="switch_size">24dp</dimen>
+    <dimen name="switch_radius">12dp</dimen>
+    <dimen name="switch_margin">2dp</dimen>
+    <dimen name="view_margin_half">4dp</dimen>
+    <dimen name="view_marginX1">8dp</dimen>
+    <dimen name="view_marginX2">16dp</dimen>
+    <dimen name="view_marginX3">24dp</dimen>
+    <dimen name="appBar">56dp</dimen>
+</resources>

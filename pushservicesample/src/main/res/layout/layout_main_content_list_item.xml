@@ -1,0 +1,121 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/dateGroup"
+        android:padding="@dimen/view_margin_half"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/separatorDate"
+            android:layout_margin="@dimen/view_margin_half"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:textSize="16sp"
+            android:textColor="#697586"
+            tools:text="8 Сентября"
+            android:layout_margin="@dimen/view_margin_half"
+            android:layout_below="@id/separatorDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/itemGroup"
+        android:padding="@dimen/view_margin_half"
+        android:layout_below="@id/dateGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/separatorItem"
+            android:alpha="0.25"
+            android:layout_marginTop="@dimen/view_marginX1"
+            android:layout_marginBottom="@dimen/view_marginX1"
+            android:background="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <LinearLayout
+            android:id="@+id/left"
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/right"
+            android:layout_below="@id/separatorItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/status"
+                android:text="Новое"
+                android:textSize="12sp"
+                android:textColor="#667085"
+                android:layout_margin="@dimen/view_margin_half"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/title"
+                android:lineHeight="24sp"
+                android:textFontWeight="500"
+                android:textSize="16dp"
+                android:fontFamily="@font/gteestiprotext_medium"
+                android:textColor="#101828"
+                android:text="Тестовая отправка"
+                android:layout_margin="@dimen/view_margin_half"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/text"
+                android:lineHeight="20sp"
+                android:textFontWeight="400"
+                android:textSize="14sp"
+                android:textColor="#475467"
+                android:fontFamily="@font/gteestiprotext_regular"
+                android:text="Если вы видите это сообщение, то сообщение доставлено успешно"
+                android:layout_margin="@dimen/view_margin_half"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/right"
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/separatorItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/time"
+                android:text="15:28"
+                android:textSize="12sp"
+                android:textColor="#49454F"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/view_margin_half"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/image"
+                android:scaleType="centerCrop"
+                android:src="@android:color/darker_gray"
+                android:layout_margin="@dimen/view_margin_half"
+                android:layout_width="54dp"
+                android:layout_height="54dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

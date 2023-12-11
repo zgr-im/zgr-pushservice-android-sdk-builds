@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/filter"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/logo_filter"
+        android:title="TODO" />
+    <item android:id="@+id/settings"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/logo_settings"
+        android:title="TODO" />
+</menu>

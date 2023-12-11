@@ -1,0 +1,187 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/Title1"
+        android:text="Учетные данные" />
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/view_marginX2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/Text"
+            android:id="@+id/userLabel"
+            android:layout_marginEnd="@dimen/view_marginX1"
+            android:text="Логин"  />
+
+        <TextView
+            style="@style/Text"
+            android:gravity="end"
+            android:id="@+id/user"
+            android:layout_toEndOf="@id/userLabel"
+            android:layout_alignParentEnd="true"
+            android:text="не известен" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/view_marginX2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/Text"
+            android:id="@+id/phoneLabel"
+            android:layout_marginEnd="@dimen/view_marginX1"
+            android:text="Телефон" />
+
+        <TextView
+            style="@style/Text"
+            android:gravity="end"
+            android:id="@+id/phone"
+            android:textColor="#514AF4"
+            android:layout_toEndOf="@id/phoneLabel"
+            android:layout_alignParentEnd="true"
+            android:text="@string/phone"  />
+
+    </RelativeLayout>
+
+    <TextView
+        style="@style/Text"
+        android:layout_marginTop="@dimen/view_marginX1"
+        android:textSize="12sp"
+        android:textColor="#98A2B3"
+        android:text="Может использоваться как альтернативный способ идентификации получателя"  />
+
+    <TextView
+        style="@style/Text"
+        android:id="@+id/logout"
+        android:layout_marginTop="@dimen/view_marginX2"
+        android:layout_marginBottom="@dimen/view_marginX1"
+        android:drawableStart="@drawable/logo_logout"
+        android:drawablePadding="@dimen/view_marginX1"
+        android:textColor="#514AF4"
+        android:text="Выйти из учетной записи"  />
+
+    <TextView
+        style="@style/Title1"
+        android:layout_marginTop="@dimen/view_marginX3"
+        android:text="Системные настройки" />
+
+    <LinearLayout
+        android:id="@+id/prefs1"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/view_marginX1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:id="@+id/pushEnabled"
+            android:text="@string/pushEnabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <Switch
+            android:id="@+id/primaryDevice"
+            android:text="@string/primaryDevice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/Title1"
+        android:layout_marginTop="@dimen/view_marginX3"
+        android:text="Подписки" />
+
+    <LinearLayout
+        android:id="@+id/prefs2"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/view_marginX1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/Title1"
+        android:layout_marginTop="@dimen/view_marginX3"
+        android:text="Информация" />
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/view_marginX2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/Text"
+            android:text="Версия SDK"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            style="@style/Text"
+            android:text="13.2"
+            android:id="@+id/sdkVer"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/view_marginX2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/Text"
+            android:text="Версия приложения"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            style="@style/Text"
+            android:text="0.8"
+            android:id="@+id/appVer"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/view_marginX2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/Text"
+            android:text="Cервис сообщений"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            style="@style/Text"
+            android:text="xxxx"
+            android:id="@+id/msgService"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+

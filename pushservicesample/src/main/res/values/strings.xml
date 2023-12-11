@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Sample</string>
+    <string name="app_name">Rapporto Push</string>
+    <string name="pushEnabled">Разрешить уведомления</string>
+    <string name="primaryDevice">Основное устройство</string>
+    <string name="phone">Нажмите, чтобы указать номер</string>
+    <string name="url">https://yandex.ru/games/?utm_source=distrib&amp;utm_medium=rapporto-tech&amp;clid=2853929</string>
+    <string name="messages0Full">Перейдите в Личный кабинет и отправьте уведомления. В список получателей добавьте логин или телефон, который вы указывали при регистрации в этом приложении</string>
+    <string name="messages0Filtered">За выбранный период уведомлений не найдено</string>
 </resources>

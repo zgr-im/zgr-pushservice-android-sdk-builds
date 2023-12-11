@@ -1,0 +1,122 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout style="@style/Frame">
+
+            <TextView
+                style="@style/Title2"
+                android:text="Заголовок уведомления"  />
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/Text"
+                android:text="Доход выше в один клик" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/Frame">
+
+            <TextView
+                style="@style/Title2"
+                android:text="Текст уведомления"  />
+
+            <TextView
+                android:id="@+id/text"
+                style="@style/Text"
+                android:text="Если вы видите это сообщение, то сообщение доставлено успешно. В список получателей добавьте логин или телефон, который вы указывали при регистрации в этом приложения" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/contentGroup"
+            style="@style/Frame">
+
+            <TextView
+                android:id="@+id/contentTitle"
+                style="@style/Title2"
+                android:text="Контент"  />
+
+            <RelativeLayout
+                style="@style/Frame"
+                android:padding="1dp"
+                android:background="#EEEEEE"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <WebView
+                    android:id="@+id/webView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/Frame">
+
+            <TextView
+                style="@style/Title2"
+                android:text="Дата и время уведомления"  />
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/Text"
+                android:text="08.02.2023 12:27" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/Frame">
+
+            <TextView
+                style="@style/Title2"
+                android:text="Статус"  />
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/Text"
+                android:text="Новое" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/customPayloadGroup"
+            style="@style/Frame">
+
+            <TextView
+                style="@style/Title2"
+                android:text="Дополнительные данные (CustomPayload)"  />
+
+            <TextView
+                android:id="@+id/customPayload"
+                style="@style/Text"
+                android:text="Null" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linksGroup"
+            style="@style/Frame">
+
+            <TextView
+                style="@style/Title2"
+                android:text="Кнопки"  />
+
+            <TextView
+                style="@style/Text"
+                android:id="@+id/links"
+                android:text="Ссылки"  />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

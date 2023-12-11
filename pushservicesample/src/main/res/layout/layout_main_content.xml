@@ -1,0 +1,49 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/filterGroup"
+        android:background="#F9FAFB"
+        android:padding="@dimen/view_marginX1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/filterDates"
+            tools:text="8 Февраля - 10 Февраля"
+            android:layout_margin="@dimen/view_marginX1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/filterReset"
+            android:text="Сбросить фильтры"
+            android:textColor="#514AF4"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/view_marginX1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/top"
+        android:visibility="gone"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/layout_main_content_list"/>
+
+    <include
+        android:id="@+id/bottom"
+        android:visibility="gone"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/layout_main_content_blank"/>
+
+</LinearLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    android:id="@+id/nav_graph"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/appView">
+
+    <fragment
+        android:id="@+id/appView"
+        android:name="im.zgr.pushservice.application.ui.AppView"
+        android:label=""
+        tools:layout="@layout/layout_app">
+        <action
+            android:id="@+id/action_appView_to_loginView"
+            app:destination="@id/loginView" />
+        <action
+            android:id="@+id/action_appView_to_mainContentView"
+            app:destination="@id/mainContentView" />
+        <action
+            android:id="@+id/action_appView_to_srvView"
+            app:destination="@id/srvView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginView"
+        android:name="im.zgr.pushservice.application.ui.LoginView"
+        android:label=""
+        tools:layout="@layout/layout_login">
+        <action
+            android:id="@+id/action_loginView_to_mainContentView"
+            app:destination="@id/mainContentView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainContentView"
+        android:name="im.zgr.pushservice.application.ui.MainContentView"
+        android:label=""
+        tools:layout="@layout/layout_main_content">
+        <action
+            android:id="@+id/action_messageListView_to_prefView"
+            app:destination="@id/prefView" />
+        <action
+            android:id="@+id/action_messageListView_to_calendarView"
+            app:destination="@id/periodView" />
+        <action
+            android:id="@+id/action_messageListView_to_contentItemView"
+            app:destination="@id/mainContentItemView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainContentItemView"
+        android:name="im.zgr.pushservice.application.ui.MainContentItemView"
+        tools:layout="@layout/layout_main_content_item">
+        <argument
+            android:name="data"
+            app:argType="im.zgr.pushservice.domain.dto.NotificationDto" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/prefView"
+        android:name="im.zgr.pushservice.application.ui.PrefView"
+        tools:layout="@layout/layout_pref">
+        <action
+            android:id="@+id/action_prefView_to_loginView"
+            app:destination="@id/loginView" />
+        <action
+            android:id="@+id/action_messageListView_to_phoneView"
+            app:destination="@id/phoneView" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/phoneView"
+        android:name="im.zgr.pushservice.application.ui.PhoneView"
+        tools:layout="@layout/layout_phone">
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/periodView"
+        android:name="im.zgr.pushservice.application.ui.PeriodView"
+        tools:layout="@layout/layout_period">
+        <argument
+            android:name="data"
+            app:argType="im.zgr.pushservice.application.app.AppModel$Dates" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/srvView"
+        android:name="im.zgr.pushservice.application.ui.SrvView"
+        tools:layout="@layout/layout_srv">
+        <action
+            android:id="@+id/action_srvView_to_appView"
+            app:destination="@id/appView" />
+    </fragment>
+
+</navigation>

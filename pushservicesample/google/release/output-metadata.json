@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "im.zgr.pushservice.sample",
+  "variantName": "googleRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 2017,
+      "versionName": "2.0.17",
+      "outputFile": "pushservicesample-google-release.apk"
+    }
+  ],
+  "elementType": "File"
+}

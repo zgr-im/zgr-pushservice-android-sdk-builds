@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGray">#EEEEEE</color>
+    <color name="colorPrimary">#ffce2e</color>
+    <color name="colorPrimaryDark">#ffce2e</color>
+    <color name="colorAccent">#514AF4</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="blue_button">#726CFF</color>
+    <color name="gray_button">#CCCCCC</color>
+    <color name="gray">#D0D5DD</color>
+
+    <color name="delivered">#155EEF</color>
+    <color name="opened">#667085</color>
+
+    <color name="notification_icon_color">@color/colorWhite</color>
+
+</resources>
