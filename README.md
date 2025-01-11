@@ -31,8 +31,16 @@
 ## Методы библиотеки 
 Описаны при помощи JavaDocs в файле NotificationSdk.kt, а использование методов можно посмотреть в демо приложении PushServiceSample.
 
-## Внедрение в нативную часть Android приложения на Flutter 
-Осуществляется также как в нативное приложение на Kotlin или Java.
+## Интеграция PushService SDK в приложение Flutter
+1.	Найдите программный код вашего приложения Flutter для Android (из одноименного подкаталога ”Android”), далее – приложение Flutter для Android;
+2.	Добавить поддержку PushService SDK в приложение Flutter для Android (Cм коммит ”Добавление PushService SDK” демонстрационного приложения для Flutter) как в обычное приложение Android (см: https://github.com/zgr-im/zgr-pushservice-android-sdk-builds). При этом может потребоваться изменить имя пакета приложения Flutter для Android на то имя, которое задано в вашем google-services.json. 
+3.	Откройте приложение Flutter для Android как отдельный проект Android и выполните синхронизацию gradle, после этого вам станут доступны классы библиотеки PushService SDK для Android;
+4.	Унаследуйте главную MainActivity приложения Flutter для Android от класса im.zgr.pushservice.NotificationActivityFlutter, который в составе PushService SDK (добавленной в рамках пункта 2).
+5.	Далее используйте PushService SDK как в обычном Android приложении (например, зарегистрируйте токен на сервере из вашего класса MainActivity) и / или вызывайте методы PushService SDK из вашего приложения Flutter через стандартную технологию взаимодействия между кодом Android (Java/Котлин) и кодом Flutter.
+
+## Интеграция PushService SDK в приложение React Native
+Осуществляется аналогично тому как интегрируется PushService SDK в приложение Flutter, за исключением того, что на этапе 4 вместо im.zgr.pushservice.NotificationActivityFlutter испольуется im.zgr.pushservice.NotificationActivityReact.
+
 
 
 
